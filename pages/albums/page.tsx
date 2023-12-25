@@ -1,10 +1,13 @@
-import React from "react";
-import AlbumDetail from "./[albumId]"; 
+import { useRouter } from "next/router";
+import AlbumDetail from "./[albumId]";
 
 const Album = () => {
+  const router = useRouter();
+  const { albumId } = router.query;
+
   return (
     <div>
-      <AlbumDetail />
+      {albumId && <AlbumDetail albumId={albumId} />}
     </div>
   );
 };
