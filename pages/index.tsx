@@ -35,13 +35,28 @@ const HomePage: React.FC<Props> = ({ albumData, page, totalAlbums }) => {
     <div className="p-5 overflow-hidden">
       <h1 className="text-4xl text-center text-white font-bold">HomePage</h1>
 
+      <div className="flex justify-center mt-4 md:hidden">
+        {Array.from({ length: totalPages }, (_, i) => (
+          <Link key={i + 1} href={`/?page=${i + 1}`}>
+            <p
+              className={`p-3 mx-1 rounded ${
+                page === i + 1
+                  ? "bg-blue-500 text-white"
+                  : "bg-gray-300 text-gray-700"
+              }`}>
+              {i + 1}
+            </p>
+          </Link>
+        ))}
+      </div>
+
       {/* Card Album */}
-      <div className="grid grid-cols-4 p-16 place-items-center gap-5 h-[600px]">
+      <div className="grid grid-cols-2 md:grid-cols-4 pt-5 md:pt-10 md:p-16 place-items-center gap-5 h-[600px]">
         {albumData.map((album) => (
           <div key={album.id}>
             <Link href={`/albums/${album.id}`} passHref>
               <div className="cursor-pointer">
-                <div className="w-60 h-36 p-5 bg-white shadow-lg border-gray-200 rounded-lg dark:bg-gray-800 dar hover:-translate-y-2 ease-in-out transition-transform duration-300 ">
+                <div className="w-36 md:w-60 h-36 p-5 bg-white shadow-lg border-gray-200 rounded-lg dark:bg-gray-800 dar hover:-translate-y-2 ease-in-out transition-transform duration-300 ">
                   <h5 className="mb-2 text-2xl font-semibold tracking-tight text-gray-900 dark:text-white">
                     {album.id}
                   </h5>
@@ -56,19 +71,23 @@ const HomePage: React.FC<Props> = ({ albumData, page, totalAlbums }) => {
       </div>
 
       {/* Pagination */}
-      <div className="flex justify-center mt-3">
+      <div className="flex justify-center mt-[27rem] md:mt-3">
         {page > 1 && (
           <Link href={`/?page=${page - 1}`}>
-            <p className="p-3 ml-1 bg-blue-500 text-white rounded">Previous</p>
+            <p className="p-3 ml-1 bg-blue-500 text-white rounded hidden md:block">
+              Previous
+            </p>
           </Link>
         )}
         {page < totalPages && (
           <Link href={`/?page=${page + 1}`}>
-            <p className="p-3 ml-1 bg-blue-500 text-white rounded">Next</p>
+            <p className="p-3 ml-1 bg-blue-500 text-white rounded hidden md:block">
+              Next
+            </p>
           </Link>
         )}
       </div>
-      <div className="flex justify-center mt-2">
+      <div className="justify-center mt-2 hidden md:flex">
         {Array.from({ length: totalPages }, (_, i) => (
           <Link key={i + 1} href={`/?page=${i + 1}`}>
             <p

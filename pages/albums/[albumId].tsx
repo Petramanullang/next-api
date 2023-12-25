@@ -34,7 +34,7 @@ const AlbumDetail = ({ photos }: any) => {
   return (
     <div className="p-5">
       <h1 className="text-center text-4xl ">Album Detail</h1>
-      <div className="grid grid-cols-3 place-items-center p-10 gap-5">
+      <div className="grid grid-cols-1 md:grid-cols-3 place-items-center pt-10 md:p-10 gap-5">
         {photos.map((photo: any) => (
           <div key={photo.id} className="w-4/6 p-2 max-h-80 rounded-md dark:bg-gray-800">
             <Image
